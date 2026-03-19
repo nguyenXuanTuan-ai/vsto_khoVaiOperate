@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using Office = Microsoft.Office.Core;
@@ -52,6 +53,13 @@ namespace khoVaiOperate
         public void onDocTheKhoClick(Office.IRibbonControl control)
         {
             Debug.WriteLine("đọc thẻ kho click");
+            try
+            {
+                string query = $"select * from {VanTuongSql}"
+            } catch (Exception ex)
+            {
+                CommonInternalFunction.informDisconnection();
+            }
         }
 
         #region IRibbonExtensibility Members
