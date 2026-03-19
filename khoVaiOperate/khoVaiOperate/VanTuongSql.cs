@@ -8,9 +8,9 @@ namespace khoVaiOperate
 {
     public static class VanTuongSql
     {
+        public static string ipAddress = "100.64.0.1";
         public static class congTySql
         {
-            public static string ipAddress = "100.64.0.1";
             public static class tableDanhSáchNhânViên
             {
                 public static string name = "congTy.danhSáchNhânViên";

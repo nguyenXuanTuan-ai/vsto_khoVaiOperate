@@ -52,14 +52,7 @@ namespace khoVaiOperate
 
         public void onDocTheKhoClick(Office.IRibbonControl control)
         {
-            Debug.WriteLine("đọc thẻ kho click");
-            try
-            {
-                string query = $"select * from {VanTuongSql}"
-            } catch (Exception ex)
-            {
-                CommonInternalFunction.informDisconnection();
-            }
+            DocTheKhoClass.docTheKho_button_click();
         }
 
         #region IRibbonExtensibility Members
