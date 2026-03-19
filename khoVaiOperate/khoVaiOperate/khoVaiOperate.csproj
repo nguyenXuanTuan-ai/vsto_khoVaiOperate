@@ -141,6 +141,7 @@
   <ItemGroup>
     <Compile Include="BasicSqlFunction.cs" />
     <Compile Include="CommonInternalFunction.cs" />
+    <Compile Include="DocTheKhoClass.cs" />
     <Compile Include="khoVảiObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ribbon1.cs" />
