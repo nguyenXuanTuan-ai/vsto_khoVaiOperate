@@ -10,6 +10,10 @@ namespace khoVaiOperate
 {
     public partial class ThisWorkbook
     {
+        protected override Office.IRibbonExtensibility CreateRibbonExtensibilityObject()
+        {
+            return new Ribbon1();
+        }
         private void ThisWorkbook_Startup(object sender, System.EventArgs e)
         {
             try
