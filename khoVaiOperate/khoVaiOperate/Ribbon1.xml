@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="Ribbon_Load">
+  <ribbon>
+    <tabs>
+      <tab idMso="TabAddIns">
+		  <group id="groupĐọcDữLiệuCâyVải" label =" "
+			  
+				 >
+			  <button id="btnDocTheKho"
+					  label =" Đọc thẻ kho"
+					  size = "normal"
+					  onAction="onDocTheKhoClick"/>
+		  </group>
+		
+			<group id="connectionGroup" label="Kết nối">
+			  <labelControl id="connection"
+							getLabel="GetConnectionLabel"/>
+		  </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>
+
