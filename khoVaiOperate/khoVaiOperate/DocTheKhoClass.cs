@@ -72,7 +72,7 @@ namespace khoVaiOperate
                 List<string> listThẻKho = listThẻKhoObject.Select(x => x?.ToString() ?? string.Empty).ToList();
                 List<string> listPhiếuNhập = listPhiếuNhậpObject.Select(x => x?.ToString() ?? string.Empty).ToList();
                 List<string> listSốĐơnHàngVải = listSốĐơnHàngVảiObject.Select(x => x?.ToString() ?? string.Empty).ToList();
-                 //stop in here , next time convert sheet ngày nhập
+                List<DateTime?> listNgàyNhập = listNgàyNhậpObject.Select(x => x == null ? (DateTime?)null : (DateTime?)Convert.ToDateTime(x)).ToList();
             }
             catch (Exception ex)
             {

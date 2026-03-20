@@ -187,7 +187,8 @@ namespace khoVaiOperate
                 {
                     foreach (var column in listOfColumn)
                     {
-                        sqlTable[column].Add(reader[column]);
+                        object value = reader[column];
+                        sqlTable[column].Add(value == DBNull.Value ? null : value);
                     }
                 }
                 CommonInternalFunction.informConnectionStable();
@@ -204,6 +205,5 @@ namespace khoVaiOperate
                 }
             }
         }
-
     }
 }
