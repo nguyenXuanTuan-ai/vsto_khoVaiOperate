@@ -49,6 +49,7 @@ namespace khoVaiOperate
                     VanTuongSql.KhoVaiSql.tableCâyVải.địnhLượngg_m2,
                     VanTuongSql.KhoVaiSql.tableCâyVải.thunSi,
                     VanTuongSql.KhoVaiSql.tableCâyVải.thẻKhoĐạiDiện,
+                    VanTuongSql.KhoVaiSql.tableCâyVải.sốThứTựMàuVải,
                     VanTuongSql.KhoVaiSql.tableCâyVải.ghiChú
                 };
                 basicSqlFunction.readWholeSqlTable(query, listColumnCâyVải, dataCâyVải);
@@ -75,6 +76,7 @@ namespace khoVaiOperate
                 List<object> listĐịnhLượngg_m2Object = dataCâyVải[VanTuongSql.KhoVaiSql.tableCâyVải.địnhLượngg_m2];
                 List<object> listThunSiObject = dataCâyVải[VanTuongSql.KhoVaiSql.tableCâyVải.thunSi];
                 List<object> listThẻKhoĐạiDiệnObject = dataCâyVải[VanTuongSql.KhoVaiSql.tableCâyVải.thẻKhoĐạiDiện];
+                List<object> listSốThứTựMàuVảiObject = dataCâyVải[VanTuongSql.KhoVaiSql.tableCâyVải.sốThứTựMàuVải];
                 List<object> listGhiChúObject = dataCâyVải[VanTuongSql.KhoVaiSql.tableCâyVải.ghiChú];
 
                 List<string> listThẻKho = listThẻKhoObject.Select(x => x?.ToString() ?? string.Empty).ToList();
@@ -100,10 +102,10 @@ namespace khoVaiOperate
                 List<double> listĐịnhLượng = listĐịnhLượngg_m2Object.Select(x => Convert.ToDouble(x)).ToList();
                 List<string> listThunSi = listThunSiObject.Select(x => x?.ToString() ?? string.Empty).ToList();
                 List<string> listThẻKhoĐạiDiện = listThẻKhoObject.Select(x => x?.ToString() ?? string.Empty).ToList();
+                List<int> listSốThứTựMàuVải = listSốThứTựMàuVảiObject.Select(x => Convert.ToInt32(x)).ToList();
                 List<string> listGhiChú = listGhiChúObject.Select(x => x?.ToString() ?? string.Empty).ToList();
-                const int numberOfColumns = 26;
+                const int numberOfColumns = 27;
                 int numberOfRows = listThẻKho.Count;
-
 
                 List<double> listSốMétConverted = new List<double>();
                 for(int i = 0; i < listThẻKho.Count; i++)
@@ -134,7 +136,8 @@ namespace khoVaiOperate
                 Excel.Range nguyênLiệu = thisSheet.Range["U4"];
                 Excel.Range địnhLượng = thisSheet.Range["V4"];
                 Excel.Range thunSi = thisSheet.Range["W4"];
-                Excel.Range ghiChú = thisSheet.Range["X4"];
+                Excel.Range sốThứTựMàuVải = thisSheet.Range["X4"];
+                Excel.Range ghiChú = thisSheet.Range["Y4"];
 
                 thẻKho.Value2 = "Thẻ kho";
                 thẻKhoĐạiDiện.Value2 = "Thẻ kho đại diện";
@@ -159,10 +162,11 @@ namespace khoVaiOperate
                 nguyênLiệu.Value2 = "Nguyên liệu";
                 địnhLượng.Value2 = "Định lượng g/m2";
                 thunSi.Value2 = "Thun si";
+                sốThứTựMàuVải.Value2 = "Số thứ tự màu vải";
                 ghiChú.Value2 = "Ghi chú";
 
                 // extract value of số mét
-                Excel.Range sốMétConverted = khoVảiObject.sheetĐọcThẻKho.thisSheet.Range["Y4"];
+                Excel.Range sốMétConverted = khoVảiObject.sheetĐọcThẻKho.thisSheet.Range["Z4"];
                 sốMétConverted.Value = "Số mét";
                 sốMétConverted.Offset[-1, 0].Value = "Nếu số mét nhập là 0 thì số mét cây vải sẽ được suy ra từ các thông số khác. nếu giá trị là -1 nghĩa là " +
                     "không thể suy ra được số mét của cây vải";
@@ -184,7 +188,7 @@ namespace khoVaiOperate
                 }
 
                 // extract value sản lượng tồn
-                Excel.Range sảnLượngTồn = thisSheet.Range["z4"];
+                Excel.Range sảnLượngTồn = thisSheet.Range["AA4"];
                 sảnLượngTồn.Value = "Sản lượng tồn";
                 query = $"select {VanTuongSql.KhoVaiSql.tableXuấtVải.sốLượngXuất}, {VanTuongSql.KhoVaiSql.tableXuấtVải.thẻKho} from " +
                     $"{VanTuongSql.KhoVaiSql.tableXuấtVải.name} order by {VanTuongSql.KhoVaiSql.tableXuấtVải.ngày}, {VanTuongSql.KhoVaiSql.tableXuấtVải.phiếuXuấtVải}, " +
@@ -249,6 +253,7 @@ namespace khoVaiOperate
                 object[] listNguyênLiệuArray = new object[numberOfRows];
                 object[] listĐịnhLượngArray = new object[numberOfRows];
                 object[] listThunSiArray = new object[numberOfRows];
+                object[] listSốThứTựMàuVảiArray = new object[numberOfRows];
                 object[] listGhiChúArray = new object[numberOfRows];
                 object[] listSốMétConvertedArray = new object[numberOfRows];
                 object[] listSảnLượngTồnAraray = new object[numberOfRows];
@@ -279,6 +284,7 @@ namespace khoVaiOperate
                     listNguyênLiệuArray[i] = listNguyênLiệu[i];
                     listĐịnhLượngArray[i] = listĐịnhLượng[i];
                     listThunSiArray[i] = listThunSi[i];
+                    listSốThứTựMàuVảiArray[i] = listSốThứTựMàuVải[i];
                     listGhiChúArray[i] = listGhiChú[i];
                     listSốMétConvertedArray[i] = listSốMétConverted[i];
                     listSảnLượngTồnAraray[i] = listSảnLượngTồn[i];
@@ -308,12 +314,11 @@ namespace khoVaiOperate
                     arrayOutput[i, 20] = listNguyênLiệuArray[i];
                     arrayOutput[i, 21] = listĐịnhLượngArray[i];
                     arrayOutput[i, 22] = listThunSiArray[i];
-                    arrayOutput[i, 23] = listGhiChúArray[i];
-                    arrayOutput[i, 24] = listSốMétConvertedArray[i];
-                    arrayOutput[i, 25] = listSảnLượngTồnAraray[i];
+                    arrayOutput[i, 23] = listSốThứTựMàuVảiArray[i];
+                    arrayOutput[i, 24] = listGhiChúArray[i];
+                    arrayOutput[i, 25] = listSốMétConvertedArray[i];
+                    arrayOutput[i, 26] = listSảnLượngTồnAraray[i];
                 }
-
-
 
                 // set format for data
                 thẻKho.NumberFormat = "dd/MM/yyyy";
@@ -324,6 +329,7 @@ namespace khoVaiOperate
                 độCoRộngPhầnTrăm.Offset[1].Resize[numberOfRows, numberOfColumns].NumberFormat = "0,##";
                 địnhLượng.Offset[1].Resize[numberOfRows, numberOfColumns].NumberFormat = "0,##";
                 sốMétConverted.Offset[1].Resize[numberOfRows, numberOfColumns].NumberFormat = "0.##";
+                sốThứTựMàuVải.Offset[1].Resize[numberOfRows, numberOfColumns].NumberFormat = "0";
 
                 Excel.Range writingRange = thẻKho.Offset[1].Resize[numberOfRows, numberOfColumns];
                 writingRange.Value = arrayOutput;

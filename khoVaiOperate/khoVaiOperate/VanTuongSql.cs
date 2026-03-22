@@ -69,6 +69,7 @@ namespace khoVaiOperate
                 public static string thunSi = "thunSi";
                 public static string thẻKhoĐạiDiện = "thẻKhoĐạiDiện";
                 public static string ghiChú = "ghiChú";
+                public static string sốThứTựMàuVải = "sốThứTựMàuVải";
             }
             public static class tableXuấtVải
             {
